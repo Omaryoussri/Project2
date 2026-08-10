@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
-#include <stdexcept>
 #include <cstdint>
 using namespace std;
 
@@ -9,10 +7,6 @@ class BigInt {
     string number;    // Stores the number as a string
     bool isNegative;  // True if number is negative
 
-    // ==========================================
-    // US 1: Core, Constructors & Helpers
-    // ==========================================
-    
     // Remove unnecessary leading zeros from the number string
     void removeLeadingZeros() {
         // TODO: Implement this function
@@ -51,39 +45,25 @@ public:
         // TODO: Implement if needed
     }
 
-
-    // ==========================================
-    // US 2: Streams & Assignment Operators
-    // ==========================================
-
     // Assignment operator
     BigInt& operator=(const BigInt& other) {
         // TODO: Implement this operator
         return *this;
     }
 
-    // Convert BigInt to string representation
-    string toString() const {
-        // TODO: Implement this function
-        return "";
+    // Unary negation operator (-x)
+    BigInt operator-() const {
+        BigInt result;
+        // TODO: Implement negation logic
+        return result;
     }
 
-    // Output stream operator (for printing)
-    friend ostream& operator<<(ostream& os, const BigInt& num) {
+    // Unary plus operator (+x)
+    BigInt operator+() const {
+        BigInt result;
         // TODO: Implement this operator
-        return os;
+        return result;
     }
-
-    // Input stream operator (for reading from input)
-    friend istream& operator>>(istream& is, BigInt& num) {
-        // TODO: Implement this operator
-        return is;
-    }
-
-
-    // ==========================================
-    // US 3: Addition & Subtraction Operators
-    // ==========================================
 
     // Addition assignment operator (x += y)
     BigInt& operator+=(const BigInt& other) {
@@ -96,11 +76,6 @@ public:
         // TODO: Implement this operator
         return *this;
     }
-
-
-    // ==========================================
-    // US 4: Multiplication, Division & Modulus
-    // ==========================================
 
     // Multiplication assignment operator (x *= y)
     BigInt& operator*=(const BigInt& other) {
@@ -118,25 +93,6 @@ public:
     BigInt& operator%=(const BigInt& other) {
         // TODO: Implement this operator
         return *this;
-    }
-
-
-    // ==========================================
-    // US 5: Unary, Increment & Decrement
-    // ==========================================
-
-    // Unary negation operator (-x)
-    BigInt operator-() const {
-        BigInt result;
-        // TODO: Implement negation logic
-        return result;
-    }
-
-    // Unary plus operator (+x)
-    BigInt operator+() const {
-        BigInt result;
-        // TODO: Implement this operator
-        return result;
     }
 
     // Pre-increment operator (++x)
@@ -165,16 +121,27 @@ public:
         return temp;
     }
 
+    // Convert BigInt to string representation
+    string toString() const {
+        // TODO: Implement this function
+        return "";
+    }
 
-    // ==========================================
-    // US 6: Comparison Operators (Friends)
-    // ==========================================
+    // Output stream operator (for printing)
+    friend ostream& operator<<(ostream& os, const BigInt& num) {
+        // TODO: Implement this operator
+        return os;
+    }
+
+    // Input stream operator (for reading from input)
+    friend istream& operator>>(istream& is, BigInt& num) {
+        // TODO: Implement this operator
+        return is;
+    }
+
+    // Friend declarations for comparison operators
     friend bool operator==(const BigInt& lhs, const BigInt& rhs);
-    friend bool operator!=(const BigInt& lhs, const BigInt& rhs);
     friend bool operator<(const BigInt& lhs, const BigInt& rhs);
-    friend bool operator<=(const BigInt& lhs, const BigInt& rhs);
-    friend bool operator>(const BigInt& lhs, const BigInt& rhs);
-    friend bool operator>=(const BigInt& lhs, const BigInt& rhs);
 };
 
 // Binary addition operator (x + y)
@@ -248,10 +215,6 @@ bool operator>=(const BigInt& lhs, const BigInt& rhs) {
     return false;
 }
 
-
-// ==========================================
-// US 7: Main & Integration Testing Suite
-// ==========================================
 int main() {
     cout << "=== BigInt Class Test Program ===" << endl << endl;
     cout << "NOTE: All functions are currently empty." << endl;
