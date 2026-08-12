@@ -127,8 +127,10 @@ public:
 
     // Convert BigInt to string representation
     string toString() const {
-        // TODO: Implement this function
-        return "";
+        if (isNegative && number != "0") {
+            return "-" + number;
+        }
+        return number;
     }
 
     // Output stream operator (for printing)
