@@ -47,7 +47,11 @@ public:
 
     // Assignment operator
     BigInt& operator=(const BigInt& other) {
-        // TODO: Implement this operator
+        if (this == &other) {
+            return *this;
+        }
+        this->number = other.number;
+        this->isNegative = other.isNegative;
         return *this;
     }
 
