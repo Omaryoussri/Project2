@@ -135,7 +135,10 @@ public:
 
     // Output stream operator (for printing)
     friend ostream& operator<<(ostream& os, const BigInt& num) {
-        // TODO: Implement this operator
+        if (num.isNegative && num.number != "0") {
+            os << "-";
+        }
+        os << num.number;
         return os;
     }
 
