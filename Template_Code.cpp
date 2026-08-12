@@ -144,7 +144,12 @@ public:
 
     // Input stream operator (for reading from input)
     friend istream& operator>>(istream& is, BigInt& num) {
-        // TODO: Implement this operator
+        string input;
+        is >> input;
+
+        BigInt temp(input);
+        num = temp;
+
         return is;
     }
 
