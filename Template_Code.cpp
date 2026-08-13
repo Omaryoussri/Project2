@@ -47,7 +47,11 @@ public:
 
     // Assignment operator
     BigInt& operator=(const BigInt& other) {
-        // TODO: Implement this operator
+        if (this == &other) {
+            return *this;
+        }
+        this->number = other.number;
+        this->isNegative = other.isNegative;
         return *this;
     }
 
@@ -123,19 +127,29 @@ public:
 
     // Convert BigInt to string representation
     string toString() const {
-        // TODO: Implement this function
-        return "";
+        if (isNegative && number != "0") {
+            return "-" + number;
+        }
+        return number;
     }
 
     // Output stream operator (for printing)
     friend ostream& operator<<(ostream& os, const BigInt& num) {
-        // TODO: Implement this operator
+        if (num.isNegative && num.number != "0") {
+            os << "-";
+        }
+        os << num.number;
         return os;
     }
 
     // Input stream operator (for reading from input)
     friend istream& operator>>(istream& is, BigInt& num) {
-        // TODO: Implement this operator
+        string input;
+        is >> input;
+
+        BigInt temp(input);
+        num = temp;
+
         return is;
     }
 
