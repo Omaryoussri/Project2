@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstdint>
+
 using namespace std;
 
 class BigInt {
@@ -9,7 +10,6 @@ class BigInt {
 
     // Remove unnecessary leading zeros from the number string
     void removeLeadingZeros() {
-
         while (number.length() > 1 && number[0] == '0') {
             number.erase(0, 1);
         }
@@ -21,38 +21,30 @@ class BigInt {
     // Compare absolute values of two BigInts (ignore signs)
     // Returns: 1 if |this| > |other|, 0 if equal, -1 if |this| < |other|
     int compareMagnitude(const BigInt& other) const {
-
         if (this->number.length() > other.number.length()) {
             return 1;
         }
-
-
         if (this->number.length() < other.number.length()) {
             return -1;
         }
-
         if (this->number > other.number) {
             return 1;
         }
-
         if (this->number < other.number) {
             return -1;
         }
-
         return 0;
     }
 
 public:
     // Default constructor - initialize to zero
     BigInt() {
-        // TODO: Implement this constructor
         number = "0";
         isNegative = false;
     }
 
     // Constructor from 64-bit integer
     BigInt(int64_t value) {
-        // TODO: Implement this constructor
         if (value < 0) {
             isNegative = true;
             string str = to_string(value);
@@ -61,19 +53,15 @@ public:
         else {
             isNegative = false;
             number = to_string(value);
-
         }
-    }
+    } // القوس الزيادة اللي كان هنا اتشال خلاص
 
     // Constructor from string representation
     BigInt(const string& str) {
-        // TODO: Implement this constructor
-
         if (str.empty()) {
             number = "0";
             isNegative = false;
             return;
-
         }
         if (str[0] == '-') {
             isNegative = true;
@@ -84,19 +72,16 @@ public:
             number = str;
         }
         removeLeadingZeros();
-
     }
 
     // Copy constructor
     BigInt(const BigInt& other) {
-        // TODO: Implement this constructor
         this->number = other.number;
         this->isNegative = other.isNegative;
     }
 
     // Destructor
     ~BigInt() {
-     
     }
 
     // Assignment operator
