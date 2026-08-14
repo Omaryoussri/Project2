@@ -54,7 +54,7 @@ public:
             isNegative = false;
             number = to_string(value);
         }
-    } // القوس الزيادة اللي كان هنا اتشال خلاص
+    } 
 
     // Constructor from string representation
     BigInt(const string& str) {
@@ -96,15 +96,16 @@ public:
 
     // Unary negation operator (-x)
     BigInt operator-() const {
-        BigInt result;
-        // TODO: Implement negation logic
+        BigInt result = *this;
+        if(result.number != "0"){
+            result.isNegative = !result.isNegative;
+        }
         return result;
     }
 
     // Unary plus operator (+x)
     BigInt operator+() const {
-        BigInt result;
-        // TODO: Implement this operator
+        BigInt result = *this;
         return result;
     }
 
@@ -140,27 +141,27 @@ public:
 
     // Pre-increment operator (++x)
     BigInt& operator++() {
-        // TODO: Implement this operator
+        *this += BigInt(1);
         return *this;
     }
 
     // Post-increment operator (x++)
     BigInt operator++(int) {
-        BigInt temp;
-        // TODO: Implement this operator
+        BigInt temp = *this;
+        ++(*this);
         return temp;
     }
 
     // Pre-decrement operator (--x)
     BigInt& operator--() {
-        // TODO: Implement this operator
+          *this -= BigInt(1);
         return *this;
     }
 
     // Post-decrement operator (x--)
     BigInt operator--(int) {
-        BigInt temp;
-        // TODO: Implement this operator
+        BigInt temp = *this;
+        --(*this);
         return temp;
     }
 
