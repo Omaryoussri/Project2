@@ -261,7 +261,6 @@ bool operator<(const BigInt& lhs, const BigInt& rhs) {
         return cmp > 0;
     }
 }
-
 // Less-than-or-equal comparison operator (x <= y)
 bool operator<=(const BigInt& lhs, const BigInt& rhs) {
     return (lhs < rhs) || (lhs == rhs);
