@@ -54,7 +54,7 @@ public:
             isNegative = false;
             number = to_string(value);
         }
-    } 
+    }
 
     // Constructor from string representation
     BigInt(const string& str) {
@@ -110,15 +110,109 @@ public:
     }
 
     // Addition assignment operator (x += y)
-    BigInt& operator+=(const BigInt& other) {
-        // TODO: Implement this operator
-        return *this;
+
+        BigInt& operator+=(const BigInt& other) {
+
+    if (this->isNegative == other.isNegative) {
+
+        string result = "";
+        int i = this->number.length() - 1;
+        int j = other.number.length() - 1;
+        int carry = 0;
+
+        while (i >= 0 || j >= 0 || carry) {
+            int sum = carry;
+            if (i >= 0) sum += (this->number[i--] - '0');
+            if (j >= 0) sum += (other.number[j--] - '0');
+            carry = sum / 10;
+            result.push_back((sum % 10) + '0');
+        }
+
+
+        int n = result.length();
+        for (int k = 0; k < n / 2; ++k) {
+            swap(result[k], result[n - k - 1]);
+        }
+
+        this->number = result;
     }
+
+    else {
+        int cmp = this->compareMagnitude(other);
+
+
+        if (cmp >= 0) {
+
+            string result = "";
+            int i = this->number.length() - 1;
+            int j = other.number.length() - 1;
+            int borrow = 0;
+
+            while (i >= 0) {
+                int sub = (this->number[i] - '0') - borrow - (j >= 0 ? (other.number[j] - '0') : 0);
+                if (sub < 0) {
+                    sub += 10;
+                    borrow = 1;
+                } else {
+                    borrow = 0;
+                }
+                result.push_back(sub + '0');
+                i--;
+                j--;
+            }
+
+            int n = result.length();
+            for (int k = 0; k < n / 2; ++k) {
+                swap(result[k], result[n - k - 1]);
+            }
+
+            this->number = result;
+
+        }
+
+        else {
+
+            string result = "";
+            int i = other.number.length() - 1;
+            int j = this->number.length() - 1;
+            int borrow = 0;
+
+            while (i >= 0) {
+                int sub = (other.number[i] - '0') - borrow - (j >= 0 ? (this->number[j] - '0') : 0);
+                if (sub < 0) {
+                    sub += 10;
+                    borrow = 1;
+                } else {
+                    borrow = 0;
+                }
+                result.push_back(sub + '0');
+                i--;
+                j--;
+            }
+
+            int n = result.length();
+            for (int k = 0; k < n / 2; ++k) {
+                swap(result[k], result[n - k - 1]);
+            }
+
+            this->number = result;
+
+            this->isNegative = other.isNegative;
+        }
+    }
+
+
+
+    this->removeLeadingZeros();
+    return *this;
+}
+
 
     // Subtraction assignment operator (x -= y)
     BigInt& operator-=(const BigInt& other) {
         // TODO: Implement this operator
-        return *this;
+
+        return *this +=(-other);
     }
 
     // Multiplication assignment operator (x *= y)
@@ -202,14 +296,16 @@ public:
 BigInt operator+(BigInt lhs, const BigInt& rhs) {
     BigInt result;
     // TODO: Implement this operator
-    return result;
+    lhs+= rhs;
+    return lhs;
 }
 
 // Binary subtraction operator (x - y)
 BigInt operator-(BigInt lhs, const BigInt& rhs) {
     BigInt result;
     // TODO: Implement this operator
-    return result;
+     lhs-= rhs;
+    return lhs;
 }
 
 // Binary multiplication operator (x * y)
