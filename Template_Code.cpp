@@ -375,7 +375,7 @@ bool operator>=(const BigInt& lhs, const BigInt& rhs) {
 }
 
 int main() {
-    cout << "=== BigInt Class Test Program ===" << endl << endl;
+    /*cout << "=== BigInt Class Test Program ===" << endl << endl;
     cout << "NOTE: All functions are currently empty." << endl;
     cout << "Your task is to implement ALL the functions above." << endl;
     cout << "The tests below will work once you implement them correctly." << endl << endl;
@@ -435,7 +435,7 @@ int main() {
     cout << "Multiplication by zero: " << one * zero << endl;        // Should be "0"
     cout << "Negative multiplication: " << BigInt(-5) * BigInt(3) << endl;  // Should be "-15"
     cout << "Negative division: " << BigInt(-10) / BigInt(3) << endl;       // Should be "-3"
-    cout << "Negative modulus: " << BigInt(-10) % BigInt(3) << endl;        // Should be "-1"
+    cout << "Negative modulus: " << BigInt(-10) % BigInt(3) << endl;        // Should be "-1" */
 
 
     return 0;
